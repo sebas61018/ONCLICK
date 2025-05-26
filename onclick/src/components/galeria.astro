@@ -1,62 +1,63 @@
 <section class="py-24 px-6 bg-white text-[#1e293b]">
-  <div class="max-w-7xl mx-auto text-center mb-16">
+  <!-- Título con entrada lateral -->
+  <div id="galeria-title" class="max-w-7xl mx-auto text-center mb-16 opacity-0 -translate-x-10 transition-all duration-700 ease-out">
     <h2 class="text-4xl md:text-5xl font-serif font-bold tracking-tight">Galería</h2>
     <p class="text-lg md:text-xl text-[#334155] mt-4 max-w-2xl mx-auto">
       Una muestra del estilo y creatividad que llevamos a cada contenido visual.
     </p>
   </div>
 
-  <div class="grid grid-cols-4 gap-4 max-w-6xl mx-auto auto-rows-[200px] md:auto-rows-[280px]">
+  <!-- Galería -->
+  <div id="galeria-grid" class="grid grid-cols-4 gap-4 max-w-6xl mx-auto auto-rows-[200px] md:auto-rows-[280px]">
     <!-- Texto como bloque -->
-    <div class="col-span-2 row-span-1 flex items-center justify-center bg-white">
+    <div class="col-span-2 row-span-1 flex items-center justify-center bg-white opacity-0 scale-95 transition-all duration-700 ease-out" data-gallery-item>
       <h3 class="text-3xl font-semibold leading-none text-left font-serif">
         Onclick <br /><span class="font-bold">social media</span>
       </h3>
     </div>
 
     <!-- Imágenes -->
-    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer" onclick="openLightbox('/assets/galeria/gl1.jpg')">
+    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer opacity-0 scale-95 transition-all duration-700 ease-out" data-gallery-item onclick="openLightbox('/assets/galeria/gl1.jpg')">
       <img src="/assets/galeria/gl1.jpg" loading="lazy" alt="Galería 1" class="w-full h-full object-cover rounded-lg" />
     </div>
 
-    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer" onclick="openLightbox('/assets/galeria/gl2.jpg')">
+    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer opacity-0 scale-95 transition-all duration-700 ease-out" data-gallery-item onclick="openLightbox('/assets/galeria/gl2.jpg')">
       <img src="/assets/galeria/gl2.jpg" loading="lazy" alt="Galería 2" class="w-full h-full object-cover rounded-lg" />
     </div>
 
-    <div class="col-span-1 row-span-2 overflow-hidden cursor-pointer" onclick="openLightbox('/assets/galeria/gl3.jpg')">
+    <div class="col-span-1 row-span-2 overflow-hidden cursor-pointer opacity-0 scale-95 transition-all duration-700 ease-out" data-gallery-item onclick="openLightbox('/assets/galeria/gl3.jpg')">
       <img src="/assets/galeria/gl3.jpg" loading="lazy" alt="Galería 3" class="w-full h-full object-cover rounded-lg" />
     </div>
 
-    <div class="col-span-1 row-span-2 overflow-hidden cursor-pointer" onclick="openLightbox('/assets/galeria/gl8.jpg')">
+    <div class="col-span-1 row-span-2 overflow-hidden cursor-pointer opacity-0 scale-95 transition-all duration-700 ease-out" data-gallery-item onclick="openLightbox('/assets/galeria/gl8.jpg')">
       <img src="/assets/galeria/gl8.jpg" loading="lazy" alt="Galería 4" class="w-full h-full object-cover rounded-lg" />
     </div>
 
-    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer" onclick="openLightbox('/assets/galeria/gl5.jpg')">
+    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer opacity-0 scale-95 transition-all duration-700 ease-out" data-gallery-item onclick="openLightbox('/assets/galeria/gl5.jpg')">
       <img src="/assets/galeria/gl5.jpg" loading="lazy" alt="Galería 5" class="w-full h-full object-cover rounded-lg" />
     </div>
 
-    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer" onclick="openLightbox('/assets/galeria/gl6.jpg')">
+    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer opacity-0 scale-95 transition-all duration-700 ease-out" data-gallery-item onclick="openLightbox('/assets/galeria/gl6.jpg')">
       <img src="/assets/galeria/gl6.jpg" loading="lazy" alt="Galería 6" class="w-full h-full object-cover rounded-lg" />
     </div>
 
-    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer" onclick="openLightbox('/assets/galeria/gl7.jpg')">
+    <div class="col-span-2 row-span-2 overflow-hidden cursor-pointer opacity-0 scale-95 transition-all duration-700 ease-out" data-gallery-item onclick="openLightbox('/assets/galeria/gl7.jpg')">
       <img src="/assets/galeria/gl7.jpg" loading="lazy" alt="Galería 7" class="w-full h-full object-cover rounded-lg" />
     </div>
   </div>
 </section>
 
-<!-- Modal Lightbox -->
+<!-- Lightbox Modal -->
 <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
   <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-4xl font-bold z-50">&times;</button>
   <img id="lightbox-img" src="" class="max-w-[90%] max-h-[80vh] object-contain rounded-lg shadow-xl border-4 border-white" />
 </div>
 
-<!-- Script Lightbox -->
+<!-- Script para animación + lightbox -->
 <script is:inline>
   function openLightbox(src) {
     const img = document.getElementById("lightbox-img");
     const lightbox = document.getElementById("lightbox");
-
     if (img && lightbox) {
       img.src = src;
       lightbox.classList.remove("hidden");
@@ -66,7 +67,6 @@
   function closeLightbox() {
     const img = document.getElementById("lightbox-img");
     const lightbox = document.getElementById("lightbox");
-
     if (img && lightbox) {
       lightbox.classList.add("hidden");
       img.src = "";
@@ -77,11 +77,38 @@
     const lightbox = document.getElementById("lightbox");
     if (lightbox) {
       lightbox.addEventListener("click", function (e) {
-        const target = e.target;
-        if (target && target.id === "lightbox") {
+        if (e.target.id === "lightbox") {
           closeLightbox();
         }
       });
     }
+
+    // Animación al hacer scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Título
+          const title = document.getElementById("galeria-title");
+          if (title) {
+            title.classList.remove("opacity-0", "-translate-x-10");
+            title.classList.add("opacity-100", "translate-x-0");
+          }
+
+          // Imágenes
+          const items = document.querySelectorAll('[data-gallery-item]');
+          items.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.remove("opacity-0", "scale-95");
+              item.classList.add("opacity-100", "scale-100");
+            }, index * 100);
+          });
+
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 }); // más sensible
+
+    const trigger = document.getElementById("galeria-grid");
+    if (trigger) observer.observe(trigger);
   });
 </script>

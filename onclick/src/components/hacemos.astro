@@ -1,5 +1,5 @@
-<section class="py-20 px-6 bg-white text-[#1e293b]">
-  <div class="max-w-6xl mx-auto text-center space-y-8">
+<section id="loquehacemos" class="py-20 px-6 bg-white text-[#1e293b]">
+  <div class="max-w-6xl mx-auto text-center space-y-8 opacity-0 translate-y-10 transition-all duration-700 ease-out" id="anim-title">
     <h2 class="text-4xl md:text-5xl font-serif font-bold">Lo que hacemos</h2>
     <p class="text-lg md:text-xl max-w-3xl mx-auto">
       En <span class="text-yellow-500 font-semibold">ONCLICK</span> transformamos ideas en estrategias digitales con propósito. 
@@ -8,22 +8,45 @@
   </div>
 
   <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto text-center">
-    <div class="space-y-4">
-      <div class="text-5xl text-yellow-500">🎯</div>
+    <div class="space-y-4 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-200" id="card-1">
+      <div class="text-5xl">🎯</div>
       <h3 class="text-xl font-bold">Estrategia con propósito</h3>
       <p class="text-base text-[#475569]">Creamos planes personalizados que alinean la visión de tu marca con resultados reales.</p>
     </div>
 
-    <div class="space-y-4">
-      <div class="text-5xl text-yellow-500">🎥</div>
+    <div class="space-y-4 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-300" id="card-2">
+      <div class="text-5xl">🎥</div>
       <h3 class="text-xl font-bold">Contenido auténtico</h3>
       <p class="text-base text-[#475569]">Guiones, fotos y videos que comunican con estilo y emocionan a tu comunidad.</p>
     </div>
 
-    <div class="space-y-4">
-      <div class="text-5xl text-yellow-500">🚀</div>
+    <div class="space-y-4 opacity-0 translate-y-10 transition-all duration-700 ease-out delay-400" id="card-3">
+      <div class="text-5xl">🚀</div>
       <h3 class="text-xl font-bold">Presencia que impacta</h3>
       <p class="text-base text-[#475569]">Diseñamos tu identidad digital para que sea coherente, estética y memorable.</p>
     </div>
   </div>
 </section>
+
+<!-- JS para activar animación cuando aparece en pantalla -->
+<script>
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-10');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    },
+    {
+      threshold: 0.2
+    }
+  );
+
+  const targets = ['#anim-title', '#card-1', '#card-2', '#card-3'];
+  targets.forEach(id => {
+    const el = document.querySelector(id);
+    if (el) observer.observe(el);
+  });
+</script>
